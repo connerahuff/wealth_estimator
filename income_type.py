@@ -49,7 +49,8 @@ class Salary(IncomeType):
         #since employees are given a 15% discount
         return espp_amt
 
-    #this function updates in salary in the rear since we start the sim at time 0
+    #this function updates in salary in the rear since we start
+    # the sim at time 0
     def advance_year(self):
         self.yearly_income += self.yearly_income * (self.yearly_increase/100)
         self.retire_set_aside = self.set_aside_pretax_income()
@@ -103,7 +104,8 @@ class Salary(IncomeType):
         else:
             effective_tax_rate = 7.77
 
-        return post_retire_income - (post_retire_income * (effective_tax_rate/100))
+        return (post_retire_income -
+                (post_retire_income * (effective_tax_rate/100)))
 
     
         

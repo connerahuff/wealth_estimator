@@ -41,7 +41,8 @@ class Finances():
                     new_year = True
                     salary = income
 
-        #TODO: handle non salary cases loop through income list to divy up the earnings
+        #TODO: handle non salary cases loop through income list to
+        # divy up the earnings
         for income in self.income_list:
             if type(income) is Salary:
                 earnings += (income.net_income - income.espp_allotment)/12

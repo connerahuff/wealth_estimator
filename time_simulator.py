@@ -26,7 +26,8 @@ class TimeSim():
     def start_sim(self):
         while (self.months_advanced <= self.total_months):
             #Add total value of each account into dictionary
-            self.money_snapshot[self.months_advanced] = self.finances.total_asset_appraisal()
+            self.money_snapshot[self.months_advanced] = \
+                    self.finances.total_asset_appraisal()
             self.finances.utilize_monthly_income(self.months_advanced)
             self.current_time = self.advance_month(self.current_time, 1)
         print("Finished time sim")
