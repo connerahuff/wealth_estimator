@@ -5,7 +5,7 @@ from income_type import Salary
 from expense_type import AppreciatingExpense
 
 
-class Finances():
+class FinanceScenario():
 
     def __init__(self, income_list, asset_list, expense_list):
         self.income_list = income_list
@@ -20,15 +20,9 @@ class Finances():
             total_asset_value += asset.current_value
         return total_asset_value
 
-    def utilize_monthly_income(self, months_advanced):
+    def calculate_revenue(self, months_advanced, new_year):
         earnings = 0
-        new_year = False
 
-        if ((months_advanced + 1) % 12 == 0):
-            new_year = True
-
-        #TODO: handle non salary cases loop through income list to
-        # divy up the earnings
         for income in self.income_list:
             if type(income) is Salary:
                 earnings += (income.net_income - income.espp_allotment)/12
@@ -39,6 +33,21 @@ class Finances():
                     earnings += (income.espp_allotment/2)*1.15
                 if new_year:
                     income.advance_year()
+        return earnings
+
+    def utilize_monthly_income(self, months_advanced):
+        earnings = 0
+        new_year = False
+
+        if ((months_advanced + 1) % 12 == 0):
+            new_year = True
+
+        #TODO: handle non salary cases loop through income list to
+        # divy up the earnings
+        earnings = self.calculate_revenue(months_advanced, new_year)
+
+        #set aside pretax income
+
         #TODO: implement expenses and subtract expenses from take home pay
         for expense in self.expense_list:
             is_rent = (type(expense) is AppreciatingExpense)
@@ -52,4 +61,3 @@ class Finances():
             asset.add_value_to_account(earnings *
                                        asset.earnings_deposit_pct/100)
             asset.advance_month()
-            break

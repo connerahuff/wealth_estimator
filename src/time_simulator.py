@@ -4,7 +4,7 @@
 
 import datetime
 import calendar
-from finances import Finances
+from finances import FinanceScenario
 
 class TimeSim():
     def __init__(self, finances, years):

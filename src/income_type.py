@@ -12,9 +12,10 @@ import config as cfg
 
 class IncomeType():
 
-    def __init__(self, name, yearly_income):
+    def __init__(self, name, yearly_income, yearly_increase):
         self.name = name
         self.yearly_income = yearly_income
+        self.yearly_increase = yearly_increase
 
 class Salary(IncomeType):
 
@@ -26,8 +27,7 @@ class Salary(IncomeType):
 
     def __init__(self, name, yearly_income, yearly_increase, retire_pct,
                  espp_pct):
-        IncomeType.__init__(self, name, yearly_income)
-        self.yearly_increase = yearly_increase
+        IncomeType.__init__(self, name, yearly_income, yearly_increase)
         self.retire_pct = retire_pct
         self.espp_pct = espp_pct
         self.retire_set_aside = self.set_aside_pretax_income()
